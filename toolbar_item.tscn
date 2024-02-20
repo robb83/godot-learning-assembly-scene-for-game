@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdg77jqnr53dv"]
+
+[ext_resource type="Script" path="res://toolbar_item.gd" id="1_6c5in"]
+[ext_resource type="Environment" uid="uid://clc08qcskxg7m" path="res://toolbar_item_environment.tres" id="2_wfowv"]
+
+[node name="ToolbarItem" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_6c5in")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(64, 64)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="SubViewport"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/Node3D"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 1.65632, 2.48603, 1.65632)
+environment = ExtResource("2_wfowv")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

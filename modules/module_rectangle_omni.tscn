@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://xcsrt71cm3ow"]
+
+[ext_resource type="Script" path="res://modules/module.gd" id="1_y7axm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1yrnt"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8b0ty"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_doxoj"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ltrsa"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u010h"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_urgbf"]
+radius = 0.25
+
+[node name="ModuleRectangleOmni" type="Node3D"]
+script = ExtResource("1_y7axm")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D0" type="CSGBox3D" parent="CSGCombiner3D"]
+
+[node name="CSGBox3D1" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="@Area3D@30767" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 0)
+
+[node name="@CollisionShape3D@30766" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@30767"]
+shape = SubResource("SphereShape3D_1yrnt")
+
+[node name="@Area3D@31094" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1)
+
+[node name="@CollisionShape3D@31093" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@31094"]
+shape = SubResource("SphereShape3D_8b0ty")
+
+[node name="@Area3D@31421" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 0)
+
+[node name="@CollisionShape3D@31420" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@31421"]
+shape = SubResource("SphereShape3D_doxoj")
+
+[node name="@Area3D@31748" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="@CollisionShape3D@31747" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@31748"]
+shape = SubResource("SphereShape3D_ltrsa")
+
+[node name="@Area3D@32075" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(1, 0, 0, 0, 0.00247837, -0.999997, 0, 0.999997, 0.00247837, 0, -1, 0)
+
+[node name="@CollisionShape3D@32074" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@32075"]
+shape = SubResource("SphereShape3D_u010h")
+
+[node name="@Area3D@32402" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0)
+
+[node name="@CollisionShape3D@32401" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@32402"]
+shape = SubResource("SphereShape3D_urgbf")

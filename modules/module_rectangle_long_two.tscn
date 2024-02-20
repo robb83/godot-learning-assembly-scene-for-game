@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bixok8g122w07"]
+
+[ext_resource type="Script" path="res://modules/module.gd" id="1_bpgkt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6tvnk"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mc17c"]
+radius = 0.25
+
+[node name="ModuleRectangleOmni" type="Node3D"]
+script = ExtResource("1_bpgkt")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D0" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(1, 1, 4)
+
+[node name="CSGBox3D1" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.25)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="@Area3D@28813" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+
+[node name="@CollisionShape3D@28812" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@28813"]
+shape = SubResource("SphereShape3D_6tvnk")
+
+[node name="@Area3D@29140" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -2.5)
+
+[node name="@CollisionShape3D@29139" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@29140"]
+shape = SubResource("SphereShape3D_mc17c")

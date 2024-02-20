@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://og8wqkpg82b2"]
+
+[ext_resource type="Script" path="res://modules/module.gd" id="1_e2orn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_78p2l"]
+radius = 0.25
+
+[node name="ModuleRectangleOmni" type="Node3D"]
+script = ExtResource("1_e2orn")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D0" type="CSGBox3D" parent="CSGCombiner3D"]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="@Area3D@37202" type="Area3D" parent="CSGCombiner3D" groups=["anchor"]]
+transform = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0)
+
+[node name="@CollisionShape3D@37201" type="CollisionShape3D" parent="CSGCombiner3D/@Area3D@37202"]
+shape = SubResource("SphereShape3D_78p2l")

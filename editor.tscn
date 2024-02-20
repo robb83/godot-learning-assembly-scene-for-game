@@ -1,0 +1,144 @@
+[gd_scene load_steps=9 format=3 uid="uid://byylk65ptpvb"]
+
+[ext_resource type="Script" path="res://editor.gd" id="1_arnpl"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="2_2ex1c"]
+[ext_resource type="Texture2D" uid="uid://dbua3cclyhwhi" path="res://assets/panorama_image_green.png" id="2_24r0k"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w3d1m"]
+panorama = ExtResource("2_24r0k")
+
+[sub_resource type="Sky" id="Sky_xemsv"]
+sky_material = SubResource("PanoramaSkyMaterial_w3d1m")
+
+[sub_resource type="Environment" id="Environment_s1iy3"]
+background_mode = 2
+sky = SubResource("Sky_xemsv")
+ambient_light_source = 2
+ambient_light_color = Color(0.415686, 0.415686, 0.415686, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_mntob"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojrha"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.533333, 0, 1)
+
+[node name="Editor" type="Node3D"]
+script = ExtResource("1_arnpl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s1iy3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.457098, 0.391289, -0.79872, 0, 0.898028, 0.439939, 0.889416, -0.201095, 0.410487, -11.9959, 8.62866, 7.03648)
+script = ExtResource("2_2ex1c")
+
+[node name="ModuleContainer" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mntob")
+surface_material_override/0 = SubResource("StandardMaterial3D_ojrha")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -28.0
+offset_right = 21.5
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonNew" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "New"
+
+[node name="ButtonLoad" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Load"
+
+[node name="ButtonSaveAs" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Save As"
+
+[node name="ButtonDelete" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Delete Node"
+
+[node name="ButtonPlace" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Add"
+
+[node name="Panel2" type="Panel" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/ScrollContainer"]
+layout_mode = 2
+
+[node name="FileDialogLoad" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(600, 500)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.dat;Game Data")
+
+[node name="FileDialogSave" type="FileDialog" parent="."]
+size = Vector2i(600, 500)
+access = 1
+filters = PackedStringArray("*.dat;Game Data")
+
+[connection signal="pressed" from="Panel/HBoxContainer/ButtonNew" to="." method="_on_button_new_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ButtonSaveAs" to="." method="_on_button_save_as_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ButtonDelete" to="." method="_on_button_delete_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ButtonPlace" to="." method="_on_button_place_pressed"]
+[connection signal="file_selected" from="FileDialogLoad" to="." method="_on_file_dialog_load_file_selected"]
+[connection signal="file_selected" from="FileDialogSave" to="." method="_on_file_dialog_save_file_selected"]
